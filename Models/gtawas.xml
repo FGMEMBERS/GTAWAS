@@ -106,15 +106,5 @@
   <blue>4.0</blue>
  </emission>
 </animation>
-<model>
-  <name>clock</name>
-  <path>Aircraft/GTAWAS/Models/clock.xml</path>
-  <offsets>
- <x-m> -0.71 </x-m>
-   <y-m> 0.4  </y-m>
-   <z-m> 1.6 </z-m>
-    <pitch-deg>-12</pitch-deg>
-  </offsets>
-</model>
 </PropertyList>
  
