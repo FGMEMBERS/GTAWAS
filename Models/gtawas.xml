@@ -1,0 +1,120 @@
+<PropertyList>
+ 
+<path>gtawas.ac</path>
+
+
+<!-- ========== Effects ========= -->
+
+	<effect>
+		<inherits-from>Aircraft/GTAWAS/Models/Effects/aucafly</inherits-from>
+		<object-name>T2_Body</object-name>
+		<object-name>T2_Body2</object-name>
+		<object-name>T2_Flag</object-name>
+		<object-name>Front Wheel</object-name>
+		<object-name>Back Wheel</object-name>
+	</effect>
+<effect>
+ <inherits-from>Effects/model-transparent</inherits-from>
+ <object-name>T2_Screen</object-name>
+</effect>
+<animation>
+  <object-name>Front Wheel</object-name>
+<object-name>Front Wheel2</object-name>
+  <type>rotate</type>
+  <property>controls/flight/aileron</property>
+  <factor>-10</factor>
+  <offset-deg>0</offset-deg>
+  <center>
+   <x-m> -3.14122 </x-m>
+   <y-m> 0.0   </y-m>
+   <z-m> 0.57918 </z-m>
+  </center>
+  <axis>
+   <x>0</x>
+   <y>0</y>
+   <z>1</z>
+  </axis>
+ </animation>
+ 
+ <animation>
+  <type>spin</type>
+  <object-name>Front Wheel</object-name>
+<object-name>Front Wheel2</object-name>
+  <property>gear/gear[0]/rollspeed-ms</property>
+  <factor>5</factor>
+  <center>
+  <x-m> -3.14122 </x-m>
+   <y-m> 0.0   </y-m>
+   <z-m> 0.57918 </z-m>
+  </center>
+  <axis>
+	<x>0.0</x>
+   <y>-1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+<animation>
+  <type>spin</type>
+  <object-name>Back Wheel</object-name>
+  <object-name>Back Wheel2</object-name>
+  <property>gear/gear[2]/rollspeed-ms</property>
+  <factor>5</factor>
+  <center>
+   <x-m>2.13343	</x-m>
+   <y-m>0</y-m>
+   <z-m>0.57918</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>-1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+<animation>
+  <object-name>T2_Steering</object-name>
+  <type>rotate</type>
+  <property>controls/flight/aileron</property>
+<factor>100</factor>
+  <offset-deg>0</offset-deg>
+  <center>
+   <x-m> -0.71401 </x-m>
+   <y-m> 0.68826  </y-m>
+   <z-m> 1.69893 </z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+<animation>
+ <type>material</type>
+ <object-name>T2_Brake</object-name>
+ <emission>
+  <red>4.0</red>
+  <green>0.0</green>
+  <blue>0.0</blue>
+  <factor-prop>/controls/gear/brake-parking</factor-prop>
+ </emission>
+</animation>
+<animation>
+ <type>material</type>
+ <object-name>T2_Screen</object-name>
+ <emission>
+  <red>0.0</red>
+  <green>1.0</green>
+  <blue>4.0</blue>
+ </emission>
+</animation>
+<model>
+  <name>clock</name>
+  <path>Aircraft/GTAWAS/Models/clock.xml</path>
+  <offsets>
+ <x-m> -0.71 </x-m>
+   <y-m> 0.4  </y-m>
+   <z-m> 1.6 </z-m>
+    <pitch-deg>-12</pitch-deg>
+  </offsets>
+</model>
+</PropertyList>
+ 
