@@ -111,6 +111,7 @@
       </engine>
    </engines>
 	<gear>
+		<brake-parking>1</brake-parking>
 		<screen type="bool">false</screen>
 		<roof type="bool">false</roof>
 	</gear>
