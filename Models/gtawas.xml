@@ -1,33 +1,47 @@
 <PropertyList>
- 
-<path>gtawas.ac</path>
-
-
+<nasal>
+  <load>
+    <!--
+      ##############################################################################
+      # The on-load Nasal is not executed when this file is loaded as the user
+      # aircraft. The code is only executed if the file is loaded for a remote
+      # aircraft in Multi-Player mode (MP)
+      ##############################################################################
+    -->
+    <![CDATA[
+      var livery_update = aircraft.livery_update.new("Aircraft/GTAWAS/Models/Liveries");
+    ]]>
+    </load>
+  
+  <unload><![CDATA[
+    livery_update.stop();
+  ]]></unload>
+</nasal>
+<path>GTAWAS.ac</path>
 <!-- ========== Effects ========= -->
-
-	<effect>
-		<inherits-from>Aircraft/GTAWAS/Models/Effects/aucafly</inherits-from>
-		<object-name>T2_Body</object-name>
-		<object-name>T2_Body2</object-name>
-		<object-name>T2_Flag</object-name>
-		<object-name>Front Wheel</object-name>
-		<object-name>Back Wheel</object-name>
-	</effect>
+<animation>
+  <type>material</type>
+  <object-name>GTAWAS-Body</object-name>
+  <object-name>D1</object-name>
+  <property-base>sim/model/livery</property-base>
+  <texture-prop>texture</texture-prop>
+  <texture>Liveries/BaseColor.png</texture>
+</animation>
 <effect>
- <inherits-from>Effects/model-transparent</inherits-from>
- <object-name>T2_Screen</object-name>
+ <inherits-from>Effects/glass</inherits-from>
+ <object-name>Windows</object-name>
+<object-name>D3</object-name>
 </effect>
 <animation>
-  <object-name>Front Wheel</object-name>
-<object-name>Front Wheel2</object-name>
+  <object-name>frontwheel</object-name>
   <type>rotate</type>
   <property>controls/flight/aileron</property>
-  <factor>-10</factor>
+  <factor>-4</factor>
   <offset-deg>0</offset-deg>
   <center>
-   <x-m> -3.14122 </x-m>
-   <y-m> 0.0   </y-m>
-   <z-m> 0.57918 </z-m>
+   <x-m> -1.95421 </x-m>
+   <y-m> 0 </y-m>
+   <z-m> 0.34916 </z-m>
   </center>
   <axis>
    <x>0</x>
@@ -35,17 +49,15 @@
    <z>1</z>
   </axis>
  </animation>
- 
  <animation>
   <type>spin</type>
-  <object-name>Front Wheel</object-name>
-<object-name>Front Wheel2</object-name>
+  <object-name>frontwheel</object-name>
   <property>gear/gear[0]/rollspeed-ms</property>
-  <factor>5</factor>
+  <factor>10</factor>
   <center>
-  <x-m> -3.14122 </x-m>
-   <y-m> 0.0   </y-m>
-   <z-m> 0.57918 </z-m>
+   <x-m> -1.95421 </x-m>
+   <y-m> 0 </y-m>
+   <z-m> 0.34916 </z-m>
   </center>
   <axis>
 	<x>0.0</x>
@@ -55,14 +67,13 @@
  </animation>
 <animation>
   <type>spin</type>
-  <object-name>Back Wheel</object-name>
-  <object-name>Back Wheel2</object-name>
+  <object-name>backwheel</object-name>
   <property>gear/gear[2]/rollspeed-ms</property>
   <factor>5</factor>
   <center>
-   <x-m>2.13343	</x-m>
-   <y-m>0</y-m>
-   <z-m>0.57918</z-m>
+   <x-m> 1.54978 </x-m>
+   <y-m> 0 </y-m>
+   <z-m> 0.34916 </z-m>
   </center>
   <axis>
    <x>0.0</x>
@@ -71,15 +82,15 @@
   </axis>
  </animation>
 <animation>
-  <object-name>T2_Steering</object-name>
+  <object-name>Steering</object-name>
   <type>rotate</type>
   <property>controls/flight/aileron</property>
-<factor>100</factor>
+<factor>80</factor>
   <offset-deg>0</offset-deg>
   <center>
-   <x-m> -0.71401 </x-m>
-   <y-m> 0.68826  </y-m>
-   <z-m> 1.69893 </z-m>
+   <x-m> -0.49369 </x-m>
+   <y-m> -0.49173 </y-m>
+   <z-m> 0.89527 </z-m>
   </center>
   <axis>
    <x>-1</x>
@@ -89,8 +100,8 @@
  </animation>
 <animation>
  <type>material</type>
- <object-name>T2_Brake</object-name>
- <emission>
+ <object-name>Brakes</object-name>
+<emission>
   <red>4.0</red>
   <green>0.0</green>
   <blue>0.0</blue>
@@ -98,13 +109,193 @@
  </emission>
 </animation>
 <animation>
+<type>pick</type>
+<object-name>D2</object-name>
+<visible>true</visible>
+<action>
+<button>0</button>
+<repeatable>false</repeatable>
+<binding>
+<command>nasal</command>
+<script>aucafly.door.toggle();</script>
+</binding>
+</action>
+<hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>door</tooltip-id>
+                <label>Door Open/Close</label>
+            </binding>
+        </hovered>
+
+</animation>
+
+<animation>
+<type>rotate</type>
+<object-name>D1</object-name>
+<object-name>D2</object-name>
+<object-name>D3</object-name>
+<property>sim/multiplay/generic/float[0]</property>
+<factor>-40</factor>
+<center>
+<x-m>-1.21013</x-m>
+<y-m>-0.90601</y-m>
+<z-m>0.65434</z-m>
+</center>
+<axis>
+<x>0</x>
+<y>0</y>
+<z>1</z>
+</axis>
+</animation>
+<animation>
  <type>material</type>
- <object-name>T2_Screen</object-name>
+ <object-name>Left Indicator</object-name>
  <emission>
-  <red>0.0</red>
+  <red>2.0</red>
+  <green>0.8</green>
+  <blue>0.2</blue>
+  <factor-prop>sim/model/lights/indicator-left/state</factor-prop>
+ </emission>
+</animation>
+
+<animation>
+ <type>material</type>
+ <object-name>Right Indicator</object-name>
+ <emission>
+  <red>1.0</red>
   <green>1.0</green>
-  <blue>4.0</blue>
+  <blue>1.0</blue>
+  <factor-prop>sim/model/lights/indicator-right/state</factor-prop>
+ </emission>
+</animation>
+<animation>
+<type>select</type>
+  <object-name>LL</object-name>
+<condition>
+<and>
+<property>/sim/rendering/rembrandt/enabled</property>
+<greater-than>
+            <property>/sim/time/sun-angle-rad</property>
+            <value>1.57</value>
+         </greater-than>
+      </and>
+</condition>
+ </animation>
+<animation>
+<type>select</type>
+  <object-name>RR</object-name>
+<condition>
+<and>
+<property>/sim/rendering/rembrandt/enabled</property>
+<greater-than>
+            <property>/sim/time/sun-angle-rad</property>
+            <value>1.57</value>
+         </greater-than>
+      </and>
+</condition>
+ </animation>
+<animation>
+   <type>light</type>
+   <light-type>spot</light-type>
+   <name>LL</name>
+   <object-name>LL</object-name>
+   <nopreview/>
+   <position>
+     <x>-2.80428</x>
+     <y>-0.62537</y>
+     <z>0.79372</z>
+   </position>
+   <direction>
+     <x>-2.81</x>
+     <y>-0.62537</y>
+     <z>-0.1</z>
+   </direction>
+    <ambient>
+            <r>0.5</r>
+            <g>0.5</g>
+            <b>0.5</b>
+            <a>1.0</a>
+        </ambient>
+        <diffuse>
+            <r>0.7</r>
+            <g>0.7</g>
+            <b>0.6</b>
+            <a>1.0</a>
+        </diffuse>
+        <specular>
+            <r>0.8</r>
+            <g>0.8</g>
+            <b>0.8</b>
+            <a>1.0</a>
+        </specular>
+        <attenuation>
+            <c>1.0</c>
+            <l>0.002</l>
+            <q>0.00005</q>
+        </attenuation>
+        <exponent>30.0</exponent>
+        <cutoff>100</cutoff>
+        <near-m>2</near-m>
+        <far-m>1000</far-m>
+    </animation>
+<animation>
+   <type>light</type>
+   <light-type>spot</light-type>
+   <name>RR</name>
+   <object-name>RR</object-name>
+   <nopreview/>
+      <position>
+     <x>-2.80428</x>
+     <y>0.62537</y>
+     <z>0.79372</z>
+   </position>
+   <direction>
+     <x>-2.81</x>
+     <y>0.62537</y>
+     <z>-0.1</z>
+   </direction>
+    <ambient>
+            <r>0.5</r>
+            <g>0.5</g>
+            <b>0.5</b>
+            <a>1.0</a>
+        </ambient>
+        <diffuse>
+            <r>0.7</r>
+            <g>0.7</g>
+            <b>0.6</b>
+            <a>1.0</a>
+        </diffuse>
+        <specular>
+            <r>0.8</r>
+            <g>0.8</g>
+            <b>0.8</b>
+            <a>1.0</a>
+        </specular>
+        <attenuation>
+            <c>1.0</c>
+            <l>0.002</l>
+            <q>0.00005</q>
+        </attenuation>
+        <exponent>30.0</exponent>
+        <cutoff>100</cutoff>
+        <near-m>2</near-m>
+        <far-m>1000</far-m>
+    </animation>
+<animation>
+ <type>material</type>
+  <object-name>Light</object-name>
+<condition>
+<greater-than>
+            <property>/sim/time/sun-angle-rad</property>
+            <value>1.57</value>
+         </greater-than>
+</condition>
+ <emission>
+  <red>1.0</red>
+  <green>1.0</green>
+  <blue>1.0</blue>
  </emission>
 </animation>
 </PropertyList>
- 
